@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "441896832081",
+    "project_id": "newsapp-112ee",
+    "storage_bucket": "newsapp-112ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441896832081:android:187c8f863c118f5214fc70",
+        "android_client_info": {
+          "package_name": "com.example.uaspraktikumpemrogramanandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441896832081-8dj4n2iv0kcf86nebf55lp3qrpcqqalu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCImlg6AH4aCp2XJwbMmYkVmudOG5C7Alc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441896832081-8dj4n2iv0kcf86nebf55lp3qrpcqqalu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

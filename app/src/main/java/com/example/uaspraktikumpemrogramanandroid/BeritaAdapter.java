@@ -32,10 +32,6 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
     @Override
     public void onBindViewHolder(@NonNull BeritaAdapter.BeritaViewHolder holder, int position) {
         final Berita news = listBerita.get(position);
-//        Glide.with(holder.itemView.getContext())
-//                .load(news.getGambarBerita())
-//                .apply(new RequestOptions().override(110, 110))
-//                .into(holder.imgBerita);
 
         holder.tvJudulBerita.setText(news.getJudulBerita());
         holder.tvAuthor.setText(news.getAuthors());

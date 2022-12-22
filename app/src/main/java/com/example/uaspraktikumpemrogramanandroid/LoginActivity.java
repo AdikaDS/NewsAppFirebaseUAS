@@ -25,9 +25,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button login;
     DatabaseReference mDatabaseReference;
-    SharedPreferences mSharedPref;
+
+    static SharedPreferences mSharedPref;
     final String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
-    final static String USERNAME_KEY = "username-key";
+
+    final static String LOGIN_STATUS = "isLoggedIn";
+    boolean isLoggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // Mengatur shared preference
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        isLoggedIn = mSharedPref.getBoolean(LOGIN_STATUS, false);
+
+        // Membuat Intent menjadi global variabel
+        Intent intent = new Intent(LoginActivity.this, ListBeritaActivity.class);
+        if (isLoggedIn) {
+            startActivity(intent);
+            finish();
+        }
 
         // Ketika klik login akan menjalankan fungtion dibawah
         login.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if (getPassword.equals(valuePassword)) {
                                     Toast.makeText(LoginActivity.this, "Login Behasil",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, ListBeritaActivity.class);
                                     startActivity(intent);
+                                    setLoggedIn();
                                     finish();
                                 } else {
                                     showAlertDialog();
@@ -88,6 +99,18 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setLoggedIn () {
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putBoolean(LOGIN_STATUS, true);
+        editor.apply();
+    }
+
+    public static void setLoggedOut() {
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putBoolean(LOGIN_STATUS, false);
+        editor.apply();
     }
 
     public void showAlertDialog () {
@@ -109,4 +132,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+
+
 }

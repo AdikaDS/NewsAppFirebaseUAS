@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">UAS Praktikum Pemrograman Android</string>
+    <string name="app_name">News-in.com</string>
+    <string name="title_activity_tambah_berita">TambahBeritaActivity</string>
+
+    <string-array name="labels_array">
+        <item>Sport</item>
+        <item>Games</item>
+        <item>Teknologi</item>
+    </string-array>
 </resources>

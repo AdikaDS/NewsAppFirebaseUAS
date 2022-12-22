@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,13 +20,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText nama, username, password, tanggalLahir;
+    TextView tester;
     Button register;
     DatabaseReference mDatabaseReference;
-
     User user;
+    String userAge;
+    int umur;
+
+    SharedPreferences mSharedPref;
+    final String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
+    final static String NAMA_KEY = "nama-key";
+    final static String USERNAME_KEY = "username-key";
+    final static String TTL_KEY = "ttl-key";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +52,35 @@ public class RegisterActivity extends AppCompatActivity {
         tanggalLahir = findViewById(R.id.tgl_lahir);
         register = findViewById(R.id.btn_register);
 
+        tester = findViewById(R.id.tester);
+
         // Mengatur ke Firebase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User");
 
+        // Mengatur shared preference
+        mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+        // Membuat Intent menjadi global variabel
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
         clickerButton();
+
+        userAge = String.valueOf(umur);
+        tester.setText(userAge);
+//        String umurStr = String.valueOf();
+//        tester.setText(umurStr);
+
+//        saveData();
         user = new User();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Mendapatkan nilai string dari edit text
                 String valueNama = nama.getText().toString();
                 String valueUsername = username.getText().toString();
                 String valuePassword = password.getText().toString();
                 String valueTtl = tanggalLahir.getText().toString();
-
                 if (valueNama.isEmpty() || valueUsername.isEmpty() || valuePassword.isEmpty() || valueTtl.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Data tidak boleh kosong !",
                             Toast.LENGTH_SHORT).show();
@@ -71,7 +101,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Kita menggunakan maxID sebagai unique didentity untuk semua user
                                 mDatabaseReference.child(valueUsername).setValue(user);
                                 Toast.makeText(RegisterActivity.this, "Sign Up telah berhasil", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
+                                // Mengatur umur lalu di parsing data umur yang didapat ke activity lain
+//                                int hasilUmur = umur;
+//                                String hasilUmurStr = String.valueOf(hasilUmur);
+//                                intent.putExtra("kodeUmur", hasilUmurStr);
                                 startActivity(intent);
                                 finish();
                             }
@@ -86,6 +120,21 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void saveData() {
+
+        // Mendapatkan nilai string dari edit text
+        String valueNama = nama.getText().toString();
+        String valueUsername = username.getText().toString();
+        String valueTtl = tanggalLahir.getText().toString();
+
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putString(NAMA_KEY, valueNama);
+        editor.putString(USERNAME_KEY, valueUsername);
+        editor.putString(TTL_KEY, valueTtl);
+//        editor.putString(UMUR_KEY, hasilUmurStr);
+        editor.apply();
     }
 
     public void clickerButton() {
@@ -107,12 +156,18 @@ public class RegisterActivity extends AppCompatActivity {
         String monthString = Integer.toString(month + 1);
         String yearString = Integer.toString(year);
 
+        Calendar currentDate = new GregorianCalendar();
+        umur = currentDate.get(Calendar.YEAR) - year;
+        if (month > currentDate.get(Calendar.MONTH) || (month == currentDate.get(Calendar.MONTH) &&
+                day > currentDate.get(Calendar.DAY_OF_MONTH)))
+        {umur--;}
 //        umur = (2022 - year);
-//        String totalUmur = Integer.toString(umur);
-//        hasilUmur.setText(totalUmur);
+//        userAge = Integer.toString(umur);
+//        tester.setText(userAge);
 
         String dateMessage = dayString + "/" + monthString + "/" + yearString;
         tanggalLahir.setText(dateMessage);
     }
+    
 
 }

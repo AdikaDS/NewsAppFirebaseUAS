@@ -54,6 +54,14 @@
                     android:text="Authors"
                     android:textColor="@color/black"
                     android:textSize="8dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_baseline_bookmark"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="12dp"/>
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

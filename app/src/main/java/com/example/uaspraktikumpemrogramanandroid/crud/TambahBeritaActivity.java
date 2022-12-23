@@ -1,4 +1,4 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.crud;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uaspraktikumpemrogramanandroid.tambahan.ListBeritaActivity;
+import com.example.uaspraktikumpemrogramanandroid.R;
+import com.example.uaspraktikumpemrogramanandroid.model.Berita;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,8 +43,6 @@ public class TambahBeritaActivity extends AppCompatActivity {
     private final static String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
     private final static String USERNAME_KEY = "username-key";
     private final static String KATEGORI_KEY = "kategori-key";
-
-    int key = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

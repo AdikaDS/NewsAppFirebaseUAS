@@ -1,4 +1,4 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.tambahan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uaspraktikumpemrogramanandroid.R;
+import com.example.uaspraktikumpemrogramanandroid.crud.TambahBeritaActivity;
+import com.example.uaspraktikumpemrogramanandroid.model.Berita;
+import com.example.uaspraktikumpemrogramanandroid.user.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

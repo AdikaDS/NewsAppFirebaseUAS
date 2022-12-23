@@ -1,18 +1,19 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.tambahan;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.uaspraktikumpemrogramanandroid.R;
+import com.example.uaspraktikumpemrogramanandroid.crud.DetailBeritaActivity;
+import com.example.uaspraktikumpemrogramanandroid.model.Berita;
 
 import java.util.ArrayList;
 
@@ -56,30 +57,6 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
             }
         });
 
-        // Flow Menu
-//        holder.flowmenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Berita updatedBerita = new Berita();
-//                PopupMenu popupMenu = new PopupMenu(context, holder. flowmenu);
-//                popupMenu.inflate(R.menu.more);
-//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.menu_edit:
-//                                // Operasi Edit
-//
-//                                break;
-//                            case R.id.menu_delete:
-//                                // Operasi Delete
-//                                break;
-//                        }
-//                        return false;
-//                    }
-//                });
-//            }
-//        });
     }
 
     @Override

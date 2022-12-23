@@ -1,4 +1,4 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +7,15 @@ import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uaspraktikumpemrogramanandroid.tambahan.DatePickerFragment;
+import com.example.uaspraktikumpemrogramanandroid.R;
+import com.example.uaspraktikumpemrogramanandroid.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,11 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         clickerButton();
-
-//        userAge = String.valueOf(umur);
-//        tester.setText(userAge);
-//        String umurStr = String.valueOf();
-//        tester.setText(umurStr);
 
         // Memanggil class user untuk mendapatkan objek didalamnya
         user = new User();

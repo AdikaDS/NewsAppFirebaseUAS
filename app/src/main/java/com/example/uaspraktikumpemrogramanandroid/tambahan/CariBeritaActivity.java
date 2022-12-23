@@ -1,4 +1,4 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.tambahan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.uaspraktikumpemrogramanandroid.R;
 
 public class CariBeritaActivity extends AppCompatActivity {
 

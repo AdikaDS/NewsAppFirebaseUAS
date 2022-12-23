@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditBeritaActivity">
+    tools:context=".crud.EditBeritaActivity">
 
     <TextView
         android:id="@+id/tv_edit_berita"

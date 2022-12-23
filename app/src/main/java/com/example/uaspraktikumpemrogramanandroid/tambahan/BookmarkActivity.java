@@ -1,8 +1,10 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.tambahan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.uaspraktikumpemrogramanandroid.R;
 
 public class BookmarkActivity extends AppCompatActivity {
 

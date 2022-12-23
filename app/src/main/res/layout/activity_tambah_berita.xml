@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TambahBeritaActivity">
+    tools:context=".crud.TambahBeritaActivity">
 
     <TextView
         android:id="@+id/tv_tambah_berita"

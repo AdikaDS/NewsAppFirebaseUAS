@@ -1,4 +1,4 @@
-package com.example.uaspraktikumpemrogramanandroid;
+package com.example.uaspraktikumpemrogramanandroid.model;
 
 public class Berita {
 

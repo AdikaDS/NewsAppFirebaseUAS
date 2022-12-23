@@ -85,7 +85,6 @@ public class EditBeritaActivity extends AppCompatActivity {
                 if (valueJudul.isEmpty() || valueAuthor.isEmpty() || valueIsiBerita.isEmpty()) {
                     Toast.makeText(EditBeritaActivity.this, "Data tidak boleh kosong !",
                             Toast.LENGTH_SHORT).show();
-                    System.out.println(valueJudul);
                 } else {
                     mDatabaseReference.addValueEventListener(new ValueEventListener() {
                         @Override

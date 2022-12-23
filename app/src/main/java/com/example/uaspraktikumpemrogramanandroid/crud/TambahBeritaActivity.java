@@ -88,7 +88,7 @@ public class TambahBeritaActivity extends AppCompatActivity {
                 String valueJudul = judul.getText().toString();
                 String valueAuthor = author.getText().toString();
                 String valueIsiBerita = isiBerita.getText().toString();
-                sendNotification();
+
                 if (valueJudul.isEmpty() || valueAuthor.isEmpty() || valueIsiBerita.isEmpty()) {
                     Toast.makeText(TambahBeritaActivity.this, "Data tidak boleh kosong !",
                             Toast.LENGTH_SHORT).show();
@@ -104,6 +104,7 @@ public class TambahBeritaActivity extends AppCompatActivity {
                                 author.setText(berita.getAuthors());
                                 isiBerita.setText(berita.getIsi());
 
+                                sendNotification();
                                 // Mengirim data ke Firebase Realtime Database
                                 berita.setJudulBerita(valueJudul);
                                 berita.setAuthors(valueAuthor);

@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                     mDatabaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
+
                             // Mengecek apakah sudah ada username yang terdaftar atau belum
                             if (snapshot.hasChild(valueUsername)) {
                                 Toast.makeText(RegisterActivity.this, "Username telah terdaftar", Toast.LENGTH_SHORT).show();

@@ -54,11 +54,12 @@ public class ListBeritaActivity extends AppCompatActivity {
 
         String usernameParsing = mSharedPref.getString(USERNAME_KEY, "");
 
-        // Mengatur ke Firebase
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(usernameParsing);
-
+        // Menerima parsing data
         String kategoriParsing = mSharedPref.getString(KATEGORI_KEY,"");
         kategori.setText(kategoriParsing);
+
+        // Mengatur ke Firebase
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("BeritaAll").child("Kategori").child(kategoriParsing);
 
         tampilData();
 
@@ -79,7 +80,7 @@ public class ListBeritaActivity extends AppCompatActivity {
     }
 
     private void tampilData() {
-        mDatabaseReference.child("Berita").addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()) {

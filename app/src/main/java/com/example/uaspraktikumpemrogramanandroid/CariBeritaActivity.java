@@ -57,9 +57,9 @@ public class CariBeritaActivity extends AppCompatActivity {
 
     private void saveData() {
         // Mengambil nilai spinner
-        String kategoriParsing = kategori.getSelectedItem().toString();
+        String kategoriValue = kategori.getSelectedItem().toString();
         SharedPreferences.Editor editor = mSharedPref.edit();
-        editor.putString(KATEGORI_KEY, kategoriParsing);
+        editor.putString(KATEGORI_KEY, kategoriValue);
         editor.apply();
     }
 }

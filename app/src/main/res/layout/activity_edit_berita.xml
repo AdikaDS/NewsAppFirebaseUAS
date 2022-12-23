@@ -66,6 +66,7 @@
                         android:layout_height="match_parent"
                         android:textColor="@color/abu_tua"
                         android:textSize="16dp"
+                        android:text="asjdja"
                         android:gravity="center|start"
                         android:paddingStart="10dp"/>
 

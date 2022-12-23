@@ -3,6 +3,7 @@ package com.example.uaspraktikumpemrogramanandroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -24,15 +25,16 @@ import java.util.ArrayList;
 public class TambahBeritaActivity extends AppCompatActivity {
 
     EditText judul, author, isiBerita;
+    TextView kategori;
     Button tambahBerita;
-    Spinner kategori;
-    DatabaseReference mDatabaseReference;
+    DatabaseReference mDatabaseReference, mDatabaseReference1;
 
     Berita berita;
 
     private static SharedPreferences mSharedPref;
     private final static String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
     private final static String USERNAME_KEY = "username-key";
+    private final static String KATEGORI_KEY = "kategori-key";
 
     long maxID = 0;
 
@@ -42,24 +44,24 @@ public class TambahBeritaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_berita);
 
         // Mengatur antara id xml dengan variabel class
-        judul = findViewById(R.id.tbh_author);
+        judul = findViewById(R.id.tbh_judul);
         author = findViewById(R.id.tbh_author);
         isiBerita = findViewById(R.id.tbh_isi_berita);
         tambahBerita = findViewById(R.id.btn_add_berita);
         kategori = findViewById(R.id.category_add);
-
-        // Setting isi spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.labels_array, R.layout.spinner_list);
-        kategori.setAdapter(adapter);
 
         // Mengatur shared preference
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         String usernameParsing = mSharedPref.getString(USERNAME_KEY, "");
 
+        // Menerima parsing data
+        String kategoriParsing = mSharedPref.getString(KATEGORI_KEY,"");
+        kategori.setText(kategoriParsing);
+
         // Mengatur ke Firebase
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(usernameParsing).child("Berita");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(usernameParsing).child("Berita").child("Kategori").child(kategoriParsing);
+        mDatabaseReference1 = FirebaseDatabase.getInstance().getReference().child("BeritaAll").child("Kategori").child(kategoriParsing);
 
         // Memanggil class berita untuk mendapatkan objek didalamnya
         berita = new Berita();
@@ -95,7 +97,10 @@ public class TambahBeritaActivity extends AppCompatActivity {
                     berita.setIsi(valueIsiBerita);
 
                     mDatabaseReference.child(String.valueOf(maxID + 1)).setValue(berita);
+                    mDatabaseReference1.push().setValue(berita);
                     Toast.makeText(TambahBeritaActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TambahBeritaActivity.this, ListBeritaActivity.class);
+                    startActivity(intent);
 
                 }
             }

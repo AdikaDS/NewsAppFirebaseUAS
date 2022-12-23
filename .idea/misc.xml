@@ -7,6 +7,8 @@
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.184" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/background_profile.xml" value="0.184" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.184" />
+        <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/ic_baseline_bookmark.xml" value="0.1675" />
+        <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/ic_baseline_bookmarks.xml" value="0.1675" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.184" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.184" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/drawable/spinner_bg.xml" value="0.183" />
@@ -14,6 +16,7 @@
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_bookmark.xml" value="0.17552083333333332" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_cari_berita.xml" value="0.17552083333333332" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_detail_berita.xml" value="0.17552083333333332" />
+        <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_edit_berita.xml" value="0.17447916666666666" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_list_berita.xml" value="0.5" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/activity_register.xml" value="0.16145833333333334" />
@@ -24,6 +27,7 @@
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/fragment_second.xml" value="0.17552083333333332" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/layout/spinner_list.xml" value="0.5" />
         <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/menu/menu.xml" value="0.17447916666666666" />
+        <entry key="..\:/Tugas Kuliah/Semester 3/PPPB/UASPraktikumPemrogramanAndroid/app/src/main/res/menu/more.xml" value="0.1734375" />
       </map>
     </option>
   </component>

@@ -75,7 +75,7 @@ public class ListBeritaActivity extends AppCompatActivity {
 
     private void showRecyclerList(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        BeritaAdapter listAdapter = new BeritaAdapter(list);
+        BeritaAdapter listAdapter = new BeritaAdapter( list, this);
         recyclerView.setAdapter(listAdapter);
     }
 
@@ -86,6 +86,7 @@ public class ListBeritaActivity extends AppCompatActivity {
                 if (snapshot.hasChildren()) {
                     for (DataSnapshot item : snapshot.getChildren()) {
                         Berita news = item.getValue(Berita.class);
+                        news.setKey(item.getKey());
                         list.add(news);
                     }
 

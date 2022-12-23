@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TambahBeritaActivity">
+    tools:context=".EditBeritaActivity">
 
     <TextView
-        android:id="@+id/tv_tambah_berita"
+        android:id="@+id/tv_edit_berita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="26dp"
         android:gravity="center_horizontal"
-        android:text="Tambah Berita"
+        android:text="Edit Berita"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_tambah_berita"
+        android:layout_below="@+id/tv_edit_berita"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="26dp"
         android:layout_marginRight="30dp"
@@ -61,12 +61,11 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/category_add"
+                        android:id="@+id/category_edit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/abu_tua"
                         android:textSize="16dp"
-                        android:text="asjdja"
                         android:gravity="center|start"
                         android:paddingStart="10dp"/>
 
@@ -78,7 +77,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/tbh_judul"
+                        android:id="@+id/edt_judul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Judul" />
@@ -90,7 +89,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/tbh_author"
+                        android:id="@+id/edt_author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Author"/>
@@ -102,7 +101,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/tbh_isi_berita"
+                        android:id="@+id/edt_isi_berita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Isi Berita"/>
@@ -111,12 +110,12 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_add_berita"
+                android:id="@+id/btn_edit_berita"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="22dp"
                 android:backgroundTint="@color/merah"
-                android:text="Tambah"
+                android:text="Update"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp" />

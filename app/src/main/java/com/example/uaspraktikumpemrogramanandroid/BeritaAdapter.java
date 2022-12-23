@@ -21,8 +21,9 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
     final ArrayList<Berita> listBerita;
     private Context context;
 
-    public BeritaAdapter(ArrayList<Berita> list) {
-        this.listBerita = list;
+    public BeritaAdapter(ArrayList<Berita> listBerita, Context context) {
+        this.listBerita = listBerita;
+        this.context = context;
     }
 
     @NonNull
@@ -56,29 +57,29 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
         });
 
         // Flow Menu
-        holder.flowmenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Berita updatedBerita = new Berita();
-                PopupMenu popupMenu = new PopupMenu(context, holder. flowmenu);
-                popupMenu.inflate(R.menu.more);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.menu_edit:
-                                // Operasi Edit
-
-                                break;
-                            case R.id.menu_delete:
-                                // Operasi Delete
-                                break;
-                        }
-                        return false;
-                    }
-                });
-            }
-        });
+//        holder.flowmenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Berita updatedBerita = new Berita();
+//                PopupMenu popupMenu = new PopupMenu(context, holder. flowmenu);
+//                popupMenu.inflate(R.menu.more);
+//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        switch (item.getItemId()) {
+//                            case R.id.menu_edit:
+//                                // Operasi Edit
+//
+//                                break;
+//                            case R.id.menu_delete:
+//                                // Operasi Delete
+//                                break;
+//                        }
+//                        return false;
+//                    }
+//                });
+//            }
+//        });
     }
 
     @Override
@@ -89,13 +90,11 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
     public class BeritaViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvJudulBerita, tvAuthor;
-        ImageView flowmenu;
 
         public BeritaViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudulBerita = itemView.findViewById(R.id.judul_news);
             tvAuthor = itemView.findViewById(R.id.pengetik);
-            flowmenu = itemView.findViewById(R.id.flowmenu);
         }
     }
 }

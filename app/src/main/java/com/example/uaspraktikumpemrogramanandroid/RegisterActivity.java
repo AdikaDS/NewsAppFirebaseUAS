@@ -67,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Memanggil class user untuk mendapatkan objek didalamnya
         user = new User();
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

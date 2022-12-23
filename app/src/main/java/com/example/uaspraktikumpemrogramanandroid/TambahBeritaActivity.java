@@ -2,15 +2,19 @@ package com.example.uaspraktikumpemrogramanandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,10 @@ import java.util.ArrayList;
 
 public class TambahBeritaActivity extends AppCompatActivity {
 
+    private NotificationManager mnotificationManager;
+    private final static String CHANNEL_ID = "primary-channel";
+    private int NOTIFICATION_ID = 0;
+
     EditText judul, author, isiBerita;
     TextView kategori;
     Button tambahBerita;
@@ -36,7 +44,7 @@ public class TambahBeritaActivity extends AppCompatActivity {
     private final static String USERNAME_KEY = "username-key";
     private final static String KATEGORI_KEY = "kategori-key";
 
-    long maxID = 0;
+    int key = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,15 @@ public class TambahBeritaActivity extends AppCompatActivity {
         isiBerita = findViewById(R.id.tbh_isi_berita);
         tambahBerita = findViewById(R.id.btn_add_berita);
         kategori = findViewById(R.id.category_add);
+
+        // Mengatur notif
+        mnotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
+                    "app notif", NotificationManager.IMPORTANCE_HIGH);
+            mnotificationManager.createNotificationChannel(notificationChannel);
+        }
 
         // Mengatur shared preference
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
@@ -66,20 +83,6 @@ public class TambahBeritaActivity extends AppCompatActivity {
         // Memanggil class berita untuk mendapatkan objek didalamnya
         berita = new Berita();
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                if (datasnapshot.exists()) {
-                    maxID = (datasnapshot.getChildrenCount());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         tambahBerita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,24 +90,65 @@ public class TambahBeritaActivity extends AppCompatActivity {
                 String valueJudul = judul.getText().toString();
                 String valueAuthor = author.getText().toString();
                 String valueIsiBerita = isiBerita.getText().toString();
+                sendNotification();
                 if (valueJudul.isEmpty() || valueAuthor.isEmpty() || valueIsiBerita.isEmpty()) {
                     Toast.makeText(TambahBeritaActivity.this, "Data tidak boleh kosong !",
                             Toast.LENGTH_SHORT).show();
-                }  else {
-                    // Mengirim data ke Firebase Realtime Database
-                    berita.setJudulBerita(valueJudul);
-                    berita.setAuthors(valueAuthor);
-                    berita.setIsi(valueIsiBerita);
 
-                    mDatabaseReference.child(String.valueOf(maxID + 1)).setValue(berita);
-                    mDatabaseReference1.push().setValue(berita);
-                    Toast.makeText(TambahBeritaActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TambahBeritaActivity.this, ListBeritaActivity.class);
-                    startActivity(intent);
+                }  else {
+                    mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                            if (datasnapshot.hasChild(valueJudul)) {
+                                Toast.makeText(TambahBeritaActivity.this, "Judul telah terdaftar", Toast.LENGTH_SHORT).show();
+                            } else {
+                                judul.setText(berita.getJudulBerita());
+                                author.setText(berita.getAuthors());
+                                isiBerita.setText(berita.getIsi());
+
+                                // Mengirim data ke Firebase Realtime Database
+                                berita.setJudulBerita(valueJudul);
+                                berita.setAuthors(valueAuthor);
+                                berita.setIsi(valueIsiBerita);
+
+                                // Kita menggunakan judul sebagai unique identity untuk semua user
+                                mDatabaseReference.child(valueJudul).setValue(berita);
+                                mDatabaseReference1.child(valueJudul).setValue(berita);
+                                Toast.makeText(TambahBeritaActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(TambahBeritaActivity.this, ListBeritaActivity.class);
+                                startActivity(intent);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                 }
             }
         });
 
+    }
+
+    private NotificationCompat.Builder getNotificationBuilder() {
+        Intent notificationIntent = new Intent(this, ListBeritaActivity.class);
+        PendingIntent notificationPendingIntent = PendingIntent
+                .getActivity(this, NOTIFICATION_ID, notificationIntent,
+                        PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder notifyBuilder =
+                new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setContentTitle("Berhasil Input")
+                        .setContentText("Input berita sukses dilakukan!")
+                        .setSmallIcon(R.drawable.ic_baseline_lightbulb).setContentIntent(notificationPendingIntent);
+        return notifyBuilder;
+    }
+
+    private void sendNotification() {
+        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+        mnotificationManager.notify(NOTIFICATION_ID, notifyBuilder.build());
     }
 }

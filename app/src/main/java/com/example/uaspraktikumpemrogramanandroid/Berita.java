@@ -2,21 +2,12 @@ package com.example.uaspraktikumpemrogramanandroid;
 
 public class Berita {
 
-    private String key;
     private String judulBerita;
     private String authors;
     private String isi;
 
     public Berita() {
         // Default constructor required for calls to DataSnapshot.getValue(Berita.class)
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getJudulBerita() {

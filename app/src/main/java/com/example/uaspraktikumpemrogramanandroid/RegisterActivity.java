@@ -26,7 +26,7 @@ import java.util.GregorianCalendar;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText nama, username, password, tanggalLahir;
-    TextView tester;
+    TextView saveUmur;
     Button register;
     DatabaseReference mDatabaseReference;
     User user;
@@ -34,8 +34,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     SharedPreferences mSharedPref;
     final String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
-    final static String NAMA_KEY = "nama-key";
-    final static String TTL_KEY = "ttl-key";
+    private final static String NAMA_KEY = "nama-key";
+    private final static String TTL_KEY = "ttl-key";
+    private final static String UMUR_KEY = "umur-key";
 
 
     @Override
@@ -50,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         tanggalLahir = findViewById(R.id.tgl_lahir);
         register = findViewById(R.id.btn_register);
 
-        tester = findViewById(R.id.tester);
+        saveUmur = findViewById(R.id.save_umur);
 
         // Mengatur ke Firebase
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("User");
@@ -98,12 +99,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 // Kita menggunakan username sebagai unique identity untuk semua user
                                 mDatabaseReference.child(valueUsername).setValue(user);
+                                saveData();
                                 Toast.makeText(RegisterActivity.this, "Sign Up telah berhasil", Toast.LENGTH_SHORT).show();
 
-                                // Mengatur umur lalu di parsing data umur yang didapat ke activity lain
-//                                int hasilUmur = umur;
-//                                String hasilUmurStr = String.valueOf(hasilUmur);
-//                                intent.putExtra("kodeUmur", hasilUmurStr);
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intent);
                             }
@@ -125,11 +123,12 @@ public class RegisterActivity extends AppCompatActivity {
         // Mendapatkan nilai string dari edit text
         String valueNama = nama.getText().toString();
         String valueTtl = tanggalLahir.getText().toString();
+        String svUmur = saveUmur.getText().toString();
 
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putString(NAMA_KEY, valueNama);
         editor.putString(TTL_KEY, valueTtl);
-//        editor.putString(UMUR_KEY, hasilUmurStr);
+        editor.putString(UMUR_KEY, svUmur);
         editor.apply();
     }
 
@@ -157,9 +156,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (month > currentDate.get(Calendar.MONTH) || (month == currentDate.get(Calendar.MONTH) &&
                 day > currentDate.get(Calendar.DAY_OF_MONTH)))
         {umur--;}
-//        umur = (2022 - year);
-//        userAge = Integer.toString(umur);
-//        tester.setText(userAge);
+
+        saveUmur.setText(String.valueOf(umur));
 
         String dateMessage = dayString + "/" + monthString + "/" + yearString;
         tanggalLahir.setText(dateMessage);

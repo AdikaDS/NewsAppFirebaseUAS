@@ -21,6 +21,7 @@ public class CariBeritaActivity extends AppCompatActivity {
     private static SharedPreferences mSharedPref;
     private final static String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
     private final static String KATEGORI_KEY = "kategori-key";
+    final static String UMUR_KEY = "umur-key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,10 @@ public class CariBeritaActivity extends AppCompatActivity {
 
         // Mengatur shared preference
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+        // Menerima parsing data
+        String umurParsing = mSharedPref.getString(UMUR_KEY,"");
+        umur.setText(umurParsing);
 
         cari.setOnClickListener(new View.OnClickListener() {
             @Override

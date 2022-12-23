@@ -110,9 +110,9 @@
     </RelativeLayout>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/save_umur"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TESTER"
-        android:id="@+id/tester"/>
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

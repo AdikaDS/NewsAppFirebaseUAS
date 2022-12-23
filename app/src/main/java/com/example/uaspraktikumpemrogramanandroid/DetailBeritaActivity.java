@@ -87,37 +87,10 @@ public class DetailBeritaActivity extends AppCompatActivity {
                 Toast.makeText(DetailBeritaActivity.this, "Delete Data Sucessfully", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(DetailBeritaActivity.this, ListBeritaActivity.class);
                 startActivity(intent1);
-
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-//    public void readData() {
-//        berita = new Berita();
-//        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.hasChildren()) {
-//                    for (DataSnapshot data : snapshot.getChildren()) {
-//                        keyBerita = data.getKey();
-//                        // Mengirim data ke Firebase Realtime Database
-//                        berita.setJudulBerita(data.child("judulBerita").getValue().toString());
-//                        berita.setAuthors(data.child("authors").getValue().toString());
-//                        berita.setIsi(data.child("isi").getValue().toString());
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
-
-    public void saveData() {
-
-    }
 }

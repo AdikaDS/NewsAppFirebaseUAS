@@ -28,15 +28,16 @@ public class ListBeritaActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<Berita> list = new ArrayList<>();
-    TextView hasilUmur, kategori;
+    TextView hasilUmur, kategori, nama;
     FloatingActionButton fab;
     DatabaseReference mDatabaseReference;
 
     private static SharedPreferences mSharedPref;
     private final static String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
+    private final static String NAMA_KEY = "nama-key";
     private final static String USERNAME_KEY = "username-key";
     private final static String KATEGORI_KEY = "kategori-key";
-//    final static String UMUR_KEY = "umur-key";
+    private final static String UMUR_KEY = "umur-key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class ListBeritaActivity extends AppCompatActivity {
         // Mengatur antara id xml dengan variabel class
         recyclerView = findViewById(R.id.reycle_view);
         hasilUmur = findViewById(R.id.umur);
+        nama = findViewById(R.id.isi_user);
         kategori = findViewById(R.id.category);
         fab = findViewById(R.id.fab_add);
 
@@ -55,7 +57,11 @@ public class ListBeritaActivity extends AppCompatActivity {
         String usernameParsing = mSharedPref.getString(USERNAME_KEY, "");
 
         // Menerima parsing data
+        String namaParsing = mSharedPref.getString(NAMA_KEY, "");
         String kategoriParsing = mSharedPref.getString(KATEGORI_KEY,"");
+        String umurParsing = mSharedPref.getString(UMUR_KEY,"");
+        nama.setText(namaParsing);
+        hasilUmur.setText(umurParsing);
         kategori.setText(kategoriParsing);
 
         // Mengatur ke Firebase
@@ -86,7 +92,6 @@ public class ListBeritaActivity extends AppCompatActivity {
                 if (snapshot.hasChildren()) {
                     for (DataSnapshot item : snapshot.getChildren()) {
                         Berita news = item.getValue(Berita.class);
-                        news.setKey(item.getKey());
                         list.add(news);
                     }
 

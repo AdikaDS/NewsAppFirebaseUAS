@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
     static SharedPreferences mSharedPref;
     final String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
-
-    final static String LOGIN_STATUS = "isLoggedIn";
+    final static String USERNAME_KEY = "username-key";
+    final static String LOGIN_STATUS = "login-status";
     boolean isLoggedIn;
 
     @Override
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         isLoggedIn = mSharedPref.getBoolean(LOGIN_STATUS, false);
 
         // Membuat Intent menjadi global variabel
-        Intent intent = new Intent(LoginActivity.this, ListBeritaActivity.class);
+        Intent intent = new Intent(LoginActivity.this, CariBeritaActivity.class);
         if (isLoggedIn) {
             startActivity(intent);
             finish();
@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Maka sekarang get password dari realtime firebase database dan cocokkan dengan usernamenya
                                 String getPassword = snapshot.child(valueUsername).child("password").getValue(String.class);
                                 if (getPassword.equals(valuePassword)) {
+                                    saveData();
                                     Toast.makeText(LoginActivity.this, "Login Behasil",
                                             Toast.LENGTH_SHORT).show();
                                     startActivity(intent);
@@ -107,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public static void setLoggedOut() {
+    public static void logout() {
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putBoolean(LOGIN_STATUS, false);
         editor.apply();
@@ -131,6 +132,15 @@ public class LoginActivity extends AppCompatActivity {
     public void tvRegister(View view) {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public void saveData() {
+        // Mendapatkan nilai string dari edit text
+        String valueUsername = username.getText().toString();
+
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putString(USERNAME_KEY, valueUsername);
+        editor.apply();
     }
 
 

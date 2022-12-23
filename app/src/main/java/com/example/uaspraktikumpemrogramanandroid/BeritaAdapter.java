@@ -60,12 +60,10 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
 
     public class BeritaViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgBerita;
         TextView tvJudulBerita, tvAuthor;
 
         public BeritaViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBerita = itemView.findViewById(R.id.gambar_news);
             tvJudulBerita = itemView.findViewById(R.id.judul_news);
             tvAuthor = itemView.findViewById(R.id.pengetik);
         }

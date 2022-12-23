@@ -30,13 +30,11 @@ public class RegisterActivity extends AppCompatActivity {
     Button register;
     DatabaseReference mDatabaseReference;
     User user;
-    String userAge;
     int umur;
 
     SharedPreferences mSharedPref;
     final String sharedPrefFile = "com.example.uaspraktikumpemrogramanandroid";
     final static String NAMA_KEY = "nama-key";
-    final static String USERNAME_KEY = "username-key";
     final static String TTL_KEY = "ttl-key";
 
 
@@ -60,17 +58,14 @@ public class RegisterActivity extends AppCompatActivity {
         // Mengatur shared preference
         mSharedPref = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
-        // Membuat Intent menjadi global variabel
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-
         clickerButton();
 
-        userAge = String.valueOf(umur);
-        tester.setText(userAge);
+//        userAge = String.valueOf(umur);
+//        tester.setText(userAge);
 //        String umurStr = String.valueOf();
 //        tester.setText(umurStr);
 
-//        saveData();
+        // Memanggil class user untuk mendapatkan objek didalamnya
         user = new User();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String valueUsername = username.getText().toString();
                 String valuePassword = password.getText().toString();
                 String valueTtl = tanggalLahir.getText().toString();
+
                 if (valueNama.isEmpty() || valueUsername.isEmpty() || valuePassword.isEmpty() || valueTtl.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Data tidak boleh kosong !",
                             Toast.LENGTH_SHORT).show();
@@ -94,11 +90,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Username telah terdaftar", Toast.LENGTH_SHORT).show();
                             } else {
                                 // Mengirim data ke Firebase Realtime Database
+                                user.setUsername(valueUsername);
                                 user.setNamaLengkap(valueNama);
                                 user.setPassword(valuePassword);
                                 user.setTanggalLahir(valueTtl);
 
-                                // Kita menggunakan maxID sebagai unique didentity untuk semua user
+                                // Kita menggunakan username sebagai unique identity untuk semua user
                                 mDatabaseReference.child(valueUsername).setValue(user);
                                 Toast.makeText(RegisterActivity.this, "Sign Up telah berhasil", Toast.LENGTH_SHORT).show();
 
@@ -106,8 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                                int hasilUmur = umur;
 //                                String hasilUmurStr = String.valueOf(hasilUmur);
 //                                intent.putExtra("kodeUmur", hasilUmurStr);
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intent);
-                                finish();
                             }
                         }
 
@@ -126,12 +123,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Mendapatkan nilai string dari edit text
         String valueNama = nama.getText().toString();
-        String valueUsername = username.getText().toString();
         String valueTtl = tanggalLahir.getText().toString();
 
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putString(NAMA_KEY, valueNama);
-        editor.putString(USERNAME_KEY, valueUsername);
         editor.putString(TTL_KEY, valueTtl);
 //        editor.putString(UMUR_KEY, hasilUmurStr);
         editor.apply();

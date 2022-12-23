@@ -16,6 +16,7 @@ public class DetailBeritaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_berita);
 
+
         Bundle bundle = getIntent().getExtras();
         txtJudul = bundle.getString("title");
         txtAuthor = bundle.getString("author");
